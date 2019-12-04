@@ -58,7 +58,8 @@ export default class extends PureComponent {
     disabled: PropTypes.bool,
     imgSrc: PropTypes.string,
     saveData: PropTypes.string,
-    immediateLoading: PropTypes.bool
+    immediateLoading: PropTypes.bool,
+    shouldDrawInterface: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -75,7 +76,8 @@ export default class extends PureComponent {
     disabled: false,
     imgSrc: "",
     saveData: "",
-    immediateLoading: false
+    immediateLoading: false,
+    shouldDrawInterface: false
   };
 
   constructor(props) {
@@ -444,7 +446,10 @@ export default class extends PureComponent {
       const pointer = this.lazy.getPointerCoordinates();
       const brush = this.lazy.getBrushCoordinates();
 
-      this.drawInterface(this.ctx.interface, pointer, brush);
+      if(this.props.shouldDrawInterface) {
+        this.drawInterface(this.ctx.interface, pointer, brush);
+      }
+      
       this.mouseHasMoved = false;
       this.valuesChanged = false;
     }
@@ -488,7 +493,7 @@ export default class extends PureComponent {
 
   drawInterface = (ctx, pointer, brush) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
+    
     // Draw brush preview
     ctx.beginPath();
     ctx.fillStyle = this.props.brushColor;
@@ -554,14 +559,14 @@ export default class extends PureComponent {
                 }
               }}
               style={{ ...canvasStyle, zIndex }}
-              onMouseDown={isInterface ? this.handleMouseDown : undefined}
-              onMouseMove={isInterface ? this.handleMouseMove : undefined}
-              onMouseUp={isInterface ? this.handleMouseUp : undefined}
-              onMouseOut={isInterface ? this.handleMouseUp : undefined}
-              onTouchStart={isInterface ? this.handleTouchStart : undefined}
-              onTouchMove={isInterface ? this.handleTouchMove : undefined}
-              onTouchEnd={isInterface ? this.handleTouchEnd : undefined}
-              onTouchCancel={isInterface ? this.handleTouchEnd : undefined}
+              onMouseDown={isInterface && !this.props.disabled ? this.handleMouseDown : undefined}
+              onMouseMove={isInterface && !this.props.disabled ? this.handleMouseMove : undefined}
+              onMouseUp={isInterface && !this.props.disabled ? this.handleMouseUp : undefined}
+              onMouseOut={isInterface && !this.props.disabled ? this.handleMouseUp : undefined}
+              onTouchStart={isInterface && !this.props.disabled ? this.handleTouchStart : undefined}
+              onTouchMove={isInterface && !this.props.disabled ? this.handleTouchMove : undefined}
+              onTouchEnd={isInterface && !this.props.disabled ? this.handleTouchEnd : undefined}
+              onTouchCancel={isInterface && !this.props.disabled ? this.handleTouchEnd : undefined}
             />
           );
         })}
