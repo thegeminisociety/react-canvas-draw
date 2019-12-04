@@ -59,7 +59,7 @@ export default class extends PureComponent {
     imgSrc: PropTypes.string,
     saveData: PropTypes.string,
     immediateLoading: PropTypes.bool,
-    shouldDrawInterface: PropTypes.bool
+    drawInterface: PropTypes.bool
   };
 
   static defaultProps = {
@@ -77,7 +77,7 @@ export default class extends PureComponent {
     imgSrc: "",
     saveData: "",
     immediateLoading: false,
-    shouldDrawInterface: false
+    drawInterface: false
   };
 
   constructor(props) {
@@ -446,7 +446,7 @@ export default class extends PureComponent {
       const pointer = this.lazy.getPointerCoordinates();
       const brush = this.lazy.getBrushCoordinates();
 
-      if(this.props.shouldDrawInterface) {
+      if(this.props.drawInterface) {
         this.drawInterface(this.ctx.interface, pointer, brush);
       }
       
