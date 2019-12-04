@@ -59,7 +59,7 @@ export default class extends PureComponent {
     imgSrc: PropTypes.string,
     saveData: PropTypes.string,
     immediateLoading: PropTypes.bool,
-    shouldDrawInterface: PropTypes.bool,
+    shouldDrawInterface: PropTypes.bool
   };
 
   static defaultProps = {
@@ -539,7 +539,6 @@ export default class extends PureComponent {
           touchAction: "none",
           width: this.props.canvasWidth,
           height: this.props.canvasHeight,
-          pointerEvents: `${this.props.disabled ? 'none' : 'auto'}`,
           ...this.props.style
         }}
         ref={container => {
