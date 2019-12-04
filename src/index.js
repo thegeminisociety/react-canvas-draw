@@ -539,6 +539,7 @@ export default class extends PureComponent {
           touchAction: "none",
           width: this.props.canvasWidth,
           height: this.props.canvasHeight,
+          pointerEvents: `${this.props.disabled ? 'none' : 'auto'}`,
           ...this.props.style
         }}
         ref={container => {
@@ -559,14 +560,14 @@ export default class extends PureComponent {
                 }
               }}
               style={{ ...canvasStyle, zIndex }}
-              onMouseDown={isInterface && !this.props.disabled ? this.handleMouseDown : undefined}
-              onMouseMove={isInterface && !this.props.disabled ? this.handleMouseMove : undefined}
-              onMouseUp={isInterface && !this.props.disabled ? this.handleMouseUp : undefined}
-              onMouseOut={isInterface && !this.props.disabled ? this.handleMouseUp : undefined}
-              onTouchStart={isInterface && !this.props.disabled ? this.handleTouchStart : undefined}
-              onTouchMove={isInterface && !this.props.disabled ? this.handleTouchMove : undefined}
-              onTouchEnd={isInterface && !this.props.disabled ? this.handleTouchEnd : undefined}
-              onTouchCancel={isInterface && !this.props.disabled ? this.handleTouchEnd : undefined}
+              onMouseDown={isInterface ? this.handleMouseDown : undefined}
+              onMouseMove={isInterface ? this.handleMouseMove : undefined}
+              onMouseUp={isInterface ? this.handleMouseUp : undefined}
+              onMouseOut={isInterface ? this.handleMouseUp : undefined}
+              onTouchStart={isInterface ? this.handleTouchStart : undefined}
+              onTouchMove={isInterface ? this.handleTouchMove : undefined}
+              onTouchEnd={isInterface ? this.handleTouchEnd : undefined}
+              onTouchCancel={isInterface ? this.handleTouchEnd : undefined}
             />
           );
         })}
