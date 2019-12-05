@@ -113,7 +113,7 @@ export default class extends PureComponent {
     );
     this.canvasObserver.observe(this.canvasContainer);
 
-    this.drawImage();
+    //this.drawImage();
     this.loop();
 
     window.setTimeout(() => {
