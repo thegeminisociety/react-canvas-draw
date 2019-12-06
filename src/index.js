@@ -113,7 +113,7 @@ export default class extends PureComponent {
     );
     this.canvasObserver.observe(this.canvasContainer);
 
-    //this.drawImage();
+    this.drawImage();
     this.loop();
 
     window.setTimeout(() => {
@@ -313,8 +313,8 @@ export default class extends PureComponent {
   setCanvasSize = (canvas, width, height) => {
     canvas.width = width;
     canvas.height = height;
-    canvas.style.width = width;
-    canvas.style.height = height;
+    //canvas.style.width = width;
+    //canvas.style.height = height;
   };
 
   getPointerPos = e => {
