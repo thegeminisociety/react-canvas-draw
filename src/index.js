@@ -313,8 +313,6 @@ export default class extends PureComponent {
   setCanvasSize = (canvas, width, height) => {
     canvas.width = width;
     canvas.height = height;
-    //canvas.style.width = width;
-    //canvas.style.height = height;
   };
 
   getPointerPos = e => {
