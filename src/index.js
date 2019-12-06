@@ -311,6 +311,7 @@ export default class extends PureComponent {
   };
 
   setCanvasSize = (canvas, width, height) => {
+    console.log("set canvas")
     canvas.width = width;
     canvas.height = height;
   };
