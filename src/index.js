@@ -13,6 +13,9 @@ function midPointBtw(p1, p2) {
     y: p1.y + (p2.y - p1.y) / 2
   };
 }
+const normalNum = (value, appWidth ) => {
+  return (value * 1920) / appWidth;
+};
 
 const canvasStyle = {
   display: "block",
@@ -59,7 +62,8 @@ export default class extends PureComponent {
     imgSrc: PropTypes.string,
     saveData: PropTypes.string,
     immediateLoading: PropTypes.bool,
-    drawInterface: PropTypes.bool
+    drawInterface: PropTypes.bool,
+    appWidth: PropTypes.number,
   };
 
   static defaultProps = {
@@ -77,7 +81,8 @@ export default class extends PureComponent {
     imgSrc: "",
     saveData: "",
     immediateLoading: false,
-    drawInterface: false
+    drawInterface: false,
+    appWidth:0,
   };
 
   constructor(props) {
@@ -321,7 +326,7 @@ export default class extends PureComponent {
     // use cursor pos as default
     let clientX = e.clientX;
     let clientY = e.clientY;
-
+    
     // use first touch if available
     if (e.changedTouches && e.changedTouches.length > 0) {
       clientX = e.changedTouches[0].clientX;
@@ -330,8 +335,8 @@ export default class extends PureComponent {
 
     // return mouse/touch position inside canvas
     return {
-      x: clientX - rect.left,
-      y: clientY - rect.top
+      x: normalNum(clientX - rect.left, this.appWidth),
+      y: normalNum(clientY - rect.top, this.appWidth)
     };
   };
 
