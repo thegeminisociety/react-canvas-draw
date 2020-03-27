@@ -65,6 +65,7 @@ export default class extends PureComponent {
     immediateLoading: PropTypes.bool,
     drawInterface: PropTypes.bool,
     appWidth: PropTypes.number,
+    setHasData: PropTypes.func
   };
 
   static defaultProps = {
@@ -84,6 +85,7 @@ export default class extends PureComponent {
     immediateLoading: false,
     drawInterface: false,
     appWidth:0,
+    setHasData:() => {}
   };
 
   constructor(props) {
@@ -376,6 +378,7 @@ export default class extends PureComponent {
   };
 
   drawPoints = ({ points, brushColor, brushRadius }) => {
+    this.setHasData(true)
     this.ctx.temp.lineJoin = "round";
     this.ctx.temp.lineCap = "round";
     this.ctx.temp.strokeStyle = brushColor;
@@ -447,6 +450,7 @@ export default class extends PureComponent {
       this.canvas.temp.width,
       this.canvas.temp.height
     );
+    this.setHasData(false)
   };
 
   loop = ({ once = false } = {}) => {
