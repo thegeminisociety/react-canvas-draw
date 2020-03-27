@@ -64,7 +64,8 @@ export default class extends PureComponent {
     saveData: PropTypes.string,
     immediateLoading: PropTypes.bool,
     drawInterface: PropTypes.bool,
-    appWidth: PropTypes.number
+    appWidth: PropTypes.number,
+    setHasData: PropTypes.func
   };
 
   static defaultProps = {
@@ -83,7 +84,8 @@ export default class extends PureComponent {
     saveData: "",
     immediateLoading: false,
     drawInterface: false,
-    appWidth:0
+    appWidth:0,
+    setHasData:() => {}
   };
 
   constructor(props) {
@@ -414,6 +416,7 @@ export default class extends PureComponent {
     if (this.points.length < 2) return;
 
     this.hasData = true;
+    this.props.setHasData(true);
     
     // Save as new line
     this.lines.push({
@@ -438,7 +441,6 @@ export default class extends PureComponent {
   getHasData = () => {
     return this.hasData;
   }
-
   clear = () => {
     this.lines = [];
     this.valuesChanged = true;
@@ -456,6 +458,7 @@ export default class extends PureComponent {
     );
     
     this.hasData = false;
+    this.props.setHasData(false);
   };
 
   loop = ({ once = false } = {}) => {
