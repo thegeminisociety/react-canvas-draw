@@ -378,7 +378,6 @@ export default class extends PureComponent {
   };
 
   drawPoints = ({ points, brushColor, brushRadius }) => {
-    this.props.setHasData(true)
     this.ctx.temp.lineJoin = "round";
     this.ctx.temp.lineCap = "round";
     this.ctx.temp.strokeStyle = brushColor;
@@ -415,6 +414,8 @@ export default class extends PureComponent {
   saveLine = ({ brushColor, brushRadius } = {}) => {
     if (this.points.length < 2) return;
 
+    this.props.setHasData(true)
+    
     // Save as new line
     this.lines.push({
       points: [...this.points],
