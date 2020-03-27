@@ -378,7 +378,7 @@ export default class extends PureComponent {
   };
 
   drawPoints = ({ points, brushColor, brushRadius }) => {
-    this.setHasData(true)
+    this.props.setHasData(true)
     this.ctx.temp.lineJoin = "round";
     this.ctx.temp.lineCap = "round";
     this.ctx.temp.strokeStyle = brushColor;
@@ -450,7 +450,7 @@ export default class extends PureComponent {
       this.canvas.temp.width,
       this.canvas.temp.height
     );
-    this.setHasData(false)
+    this.props.setHasData(false)
   };
 
   loop = ({ once = false } = {}) => {
