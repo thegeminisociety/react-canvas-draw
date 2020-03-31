@@ -334,8 +334,8 @@ export default class extends PureComponent {
     }
 
     
-    let xNormal = (clientX - rect.left, this.props.appWidth)
-    let yNormal = (clientY - rect.top, this.props.appWidth)
+    let xNormal = clientX - rect.left;
+    let yNormal = clientY - rect.top
     
     // return mouse/touch position inside canvas
     return {
