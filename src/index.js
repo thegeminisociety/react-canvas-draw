@@ -14,10 +14,6 @@ function midPointBtw(p1, p2) {
   };
 }
 
-function normalNum(value, appWidth) {
- return (value * 1920) / appWidth;
-}
-
 const canvasStyle = {
   display: "block",
   position: "absolute"
@@ -338,8 +334,8 @@ export default class extends PureComponent {
     }
 
     
-    let xNormal = normalNum(clientX - rect.left, this.props.appWidth)
-    let yNormal = normalNum(clientY - rect.top, this.props.appWidth)
+    let xNormal = (clientX - rect.left, this.props.appWidth)
+    let yNormal = (clientY - rect.top, this.props.appWidth)
     
     // return mouse/touch position inside canvas
     return {
