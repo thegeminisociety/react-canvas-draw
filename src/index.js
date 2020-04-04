@@ -305,7 +305,7 @@ export default class extends PureComponent {
   };
 
   handleCanvasResize = (entries, observer) => {
-    console.log("Resize!");
+    console.log("Resize!!!!");
     const saveData = this.getSaveData();
     for (const entry of entries) {
       const { width, height } = entry.contentRect;
@@ -341,13 +341,13 @@ export default class extends PureComponent {
     }
 
     
-    let xNormal = clientX - rect.left;
-    let yNormal = clientY - rect.top
+    let xPos = (clientX - rect.left) / this.props.scale;
+    let yPos = (clientY - rect.top) / this.props.scale
     
     // return mouse/touch position inside canvas
     return {
-      x: xNormal,
-      y: yNormal,
+      x: xPos,
+      y: yPos,
     };
   };
 
