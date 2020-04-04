@@ -61,7 +61,8 @@ export default class extends PureComponent {
     immediateLoading: PropTypes.bool,
     drawInterface: PropTypes.bool,
     appWidth: PropTypes.number,
-    setHasData: PropTypes.func
+    setHasData: PropTypes.func,
+    scale: PropTypes.number,
   };
 
   static defaultProps = {
@@ -81,6 +82,7 @@ export default class extends PureComponent {
     immediateLoading: false,
     drawInterface: false,
     appWidth:0,
+    scale:1,
     setHasData:() => {}
   };
 
@@ -216,6 +218,8 @@ export default class extends PureComponent {
       // we need to rescale the lines based on saved & current dimensions
       const scaleX = this.props.canvasWidth / width;
       const scaleY = this.props.canvasHeight / height;
+      // const scaleX = 1;
+      // const scaleY = 1;
       const scaleAvg = (scaleX + scaleY) / 2;
 
       this.simulateDrawingLines({
@@ -301,6 +305,7 @@ export default class extends PureComponent {
   };
 
   handleCanvasResize = (entries, observer) => {
+    console.log("Resize!");
     const saveData = this.getSaveData();
     for (const entry of entries) {
       const { width, height } = entry.contentRect;
@@ -312,6 +317,8 @@ export default class extends PureComponent {
       this.drawGrid(this.ctx.grid);
       this.loop({ once: true });
     }
+    //this.ctx.drawing.scale(2,2);
+    this.ctx.temp.scale(this.props.scale, this.props.scale);
     this.loadSaveData(saveData, true);
   };
 
