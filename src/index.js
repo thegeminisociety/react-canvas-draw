@@ -305,7 +305,6 @@ export default class extends PureComponent {
   };
 
   handleCanvasResize = (entries, observer) => {
-    console.log("Resize!!!!");
     const saveData = this.getSaveData();
     for (const entry of entries) {
       const { width, height } = entry.contentRect;
@@ -340,7 +339,6 @@ export default class extends PureComponent {
       clientY = e.changedTouches[0].clientY;
     }
 
-    
     let xPos = (clientX - rect.left) / this.props.scale;
     let yPos = (clientY - rect.top) / this.props.scale
     
@@ -456,8 +454,8 @@ export default class extends PureComponent {
     this.ctx.temp.clearRect(
       0,
       0,
-      this.canvas.temp.width,
-      this.canvas.temp.height
+      this.canvas.temp.width / this.props.scale,
+      this.canvas.temp.height / this.props.scale
     );
     
     this.hasData = false;
